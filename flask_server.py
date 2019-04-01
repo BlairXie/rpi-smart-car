@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
 from flask import Flask, abort, redirect, url_for, render_template
-from flask import Response
+from flask import Response,request
 from camera_pi import Camera
 # import ultrasonic
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/',methods=["post","get"])
 def show_index():
-  return render_template('flask_server.html')
+    try:
+        button = request.form["button"]
+        if button:
+            print(button)
+    except:
+       None 
+    return render_template('flask_server.html')
 
 def gen(camera):
     """Video streaming generator function."""
@@ -22,10 +28,6 @@ def video_feed():
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
-@app.route('/<direction>')
-def button(direction):
-
-    return redirect(url_for('show_index'))
 
 if __name__=='__main__':
-    app.run(host='0.0.0.0',port=80, debug=True, threaded=True)
+    app.run(host='0.0.0.0',port=80,debug=True,threaded=True)
