@@ -2,13 +2,9 @@ h1 {
 	font-size:50px;
 	text-align:center;
 }
-/* div {align=center;} */
-#left
-{
-	/* margin: 2px; */
-	/* padding: 5px; */
-	margin-right:400px;
 
+#left{
+	margin-right:400px;
 }
 
 input[type="submit"]{
