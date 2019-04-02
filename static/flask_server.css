@@ -13,4 +13,6 @@ h1 {
 
 input{
 	font-size:70px;
+	background-repeat: no-repeat;
+	color: transparent;
 }
