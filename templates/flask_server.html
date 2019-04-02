@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel=stylesheet type=text/css href="./static/flask_server.css">
+	<link rel=stylesheet type=text/css href="flask_server.css">
 <body>
     <h1>MJRoBot Lab Live Streaming</h1>
         <h3><img src="{{ url_for('video_feed') }}" width="90%"></h3>
 
 
-<div >
+<div align="center">
 <form action="" method ="post" target="myIframe">
 <input id="forward" type="submit" name="button" value="forward" >
 </form>
 </div>
 
-<div >
+<div align="center">
 <form  action="" method ="post" target="myIframe">
-<input  id="left" type="submit" name="button" value="left">
+<input id="left" type="submit" name="button" value="left">
 <input id="right" type="submit" name="button" value="right">
+</form>
+</div>
+
+<div align="center">
+<form action="" method ="post" target="myIframe">
+<input id="stop" type="submit" name="button" value="stop" >
 </form>
 </div>
 

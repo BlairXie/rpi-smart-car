@@ -1,6 +1,14 @@
 h1 {font-size:20px;}
+div {align="center";}
 #forward {margin-left:100px;}
-#left {margin: 2px;padding: 5px;margin-right:200px;}
+#left
+{
+	/* margin: 2px; */
+	/* padding: 5px; */
+	margin-right:100px;
+	/* right=100px; */
+}
+#stop {margin-left:100px;}
 input{
 	font-size:30px;
 }
