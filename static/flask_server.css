@@ -11,7 +11,7 @@ h1 {
 
 }
 
-input{
+input[type="submit"]{
 	font-size:70px;
 	background-repeat: no-repeat;
 	color: transparent;
