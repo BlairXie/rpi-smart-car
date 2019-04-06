@@ -22,8 +22,8 @@ GPIO.setup(ENB,GPIO.OUT)
 
 p1 = GPIO.PWM(ENA, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
 p2 = GPIO.PWM(ENB, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
-p1.start(31) #to start PWM
-p2.start(35)
+p1.start(41) #to start PWM
+p2.start(45)
 
 def forward():
     GPIO.output(GPIO_IN1,False)
