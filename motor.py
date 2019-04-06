@@ -51,7 +51,7 @@ def forward_avoid_obstacle():
     dist = distance()
     print("Measured Distance = {:.2f} cm".format(dist))
     if(dist < 25 ):
-        if dist < pre_distance:
+        if dist < pre_distance - 1.5:
             turn_flag = not turn_flag
         if turn_flag:
             turnLeft()
@@ -62,7 +62,7 @@ def forward_avoid_obstacle():
         pre_distance =0
         turn_flag = 1
         forward()
-    time.sleep(0.01)
+    time.sleep(0.04)
 
 
 try:
