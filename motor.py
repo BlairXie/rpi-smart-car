@@ -15,8 +15,8 @@ GPIO.output(GPIO_IN1,True)
 
 p1 = GPIO.PWM(GPIO_IN1, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
 p2 = GPIO.PWM(GPIO_IN2, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
-p1.start(0.5) #to start PWM
-p2.start(0.5)
+p1.start(50) #to start PWM
+p2.start(50)
 
 try:
     # while 1:
