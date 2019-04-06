@@ -23,7 +23,7 @@ GPIO.setup(ENB,GPIO.OUT)
 p1 = GPIO.PWM(ENA, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
 p2 = GPIO.PWM(ENB, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
 p1.start(41) #to start PWM
-p2.start(45)
+p2.start(48)
 
 def forward():
     GPIO.output(GPIO_IN1,False)
@@ -46,7 +46,7 @@ def turnRight():
 def forward_avoid_obstacle():
     dist = distance()
     print("Measured Distance = {:.2f} cm".format(dist))
-    if(dist < 15 ):
+    if(dist < 25 ):
         turnLeft()
     else:
         forward()
