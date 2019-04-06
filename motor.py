@@ -46,7 +46,7 @@ def turnRight():
 def forward_avoid_obstacle():
     dist = distance()
     print("Measured Distance = {:.2f} cm".format(dist))
-    if(dis < 10 ):
+    if(dist < 10 ):
         turnLeft()
         time.sleep(1)
     else:
