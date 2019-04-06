@@ -26,7 +26,7 @@ p3 = GPIO.PWM(GPIO_IN3, 200) # channel=? frequency=50Hz（需要修改高电平�
 p2.start(40) #to start PWM
 p3.start(50)
 def turnLeft(dist):
-    if distance <= 10:
+    if dist <= 10:
         p2.stop()
         GPIO.output(GPIO_IN1,True)
         GPIO.output(GPIO_IN2,False)
@@ -40,6 +40,7 @@ def turnLeft(dist):
         GPIO.output(GPIO_IN2,True)
         p2 = GPIO.PWM(GPIO_IN2, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
         p2.start(40) #to start PWM
+        print('turn left')
     return 0
 
 
