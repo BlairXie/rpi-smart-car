@@ -18,7 +18,7 @@ GPIO.setup(GPIO_IN2, GPIO.OUT)
 GPIO.setup(GPIO_IN3, GPIO.OUT)
 GPIO.setup(GPIO_IN4, GPIO.OUT)
 GPIO.setup(ENA,GPIO.OUT)
-GPIP.setup(ENB,GPIO.OUT)
+GPIO.setup(ENB,GPIO.OUT)
 
 p1 = GPIO.PWM(ENA, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
 p2 = GPIO.PWM(ENB, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
