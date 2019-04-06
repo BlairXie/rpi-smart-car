@@ -1,6 +1,7 @@
 # --coding: utf-8 --
 import RPi.GPIO as GPIO
 import time
+import ultrasonic
 GPIO.setmode(GPIO.BCM)
 #定义 GPIO 引脚
 
@@ -15,18 +16,21 @@ GPIO.output(GPIO_IN1,True)
 
 p1 = GPIO.PWM(GPIO_IN1, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
 p2 = GPIO.PWM(GPIO_IN2, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
-p1.start(50) #to start PWM
+p1.start(40) #to start PWM
 p2.start(50)
-while 1:
-    try:
-        # while 1:
-        #     for dc in range(0,90,2):
-        #         p.ChangeDutyCycle(dc)
-        #         time.sleep(0.3)
-        pass
-    # Reset by pressing CTRL + C
-    except KeyboardInterrupt:
-        p1.stop()
-        p2.stop()
-        print("Measurement stopped by User")
-        GPIO.cleanup()
+
+try:
+    while 1:
+        dist = distance()
+        print("Measured Distance = {:.2f} cm".format(dist))
+        time.sleep(1)
+    #     for dc in range(0,90,2):
+    #         p.ChangeDutyCycle(dc)
+    #         time.sleep(0.3)
+
+# Reset by pressing CTRL + C
+except KeyboardInterrupt:
+    p1.stop()
+    p2.stop()
+    print("Measurement stopped by User")
+    GPIO.cleanup()
