@@ -48,6 +48,7 @@ def turnLeft(dist):
 try:
     while 1:
         dist = distance()
+        print("Measured Distance = {:.2f} cm".format(dist))
         turnLeft(dist)
         time.sleep(1)
 
