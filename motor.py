@@ -1,7 +1,7 @@
 # --coding: utf-8 --
 import RPi.GPIO as GPIO
 import time
-import ultrasonic
+from ultrasonic import distance
 GPIO.setmode(GPIO.BCM)
 #定义 GPIO 引脚
 
