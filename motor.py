@@ -51,8 +51,8 @@ def forward_avoid_obstacle():
     dist = distance()
     print("Measured Distance = {:.2f} cm".format(dist))
     if(dist < 25 ):
-        p1.ChangeDutyCycle(31)
-        p2.ChangeDutyCycle(38)
+        p1.ChangeDutyCycle(50)
+        p2.ChangeDutyCycle(57)
         if dist < pre_distance - 1.5:
             turn_flag = not turn_flag
         if turn_flag:
