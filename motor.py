@@ -62,7 +62,7 @@ def forward_avoid_obstacle():
         pre_distance =0
         turn_flag = 1
         forward()
-    time.sleep(0.04)
+    time.sleep(0.08)
 
 
 try:
