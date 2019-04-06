@@ -3,9 +3,9 @@ import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BCM)
 #定义 GPIO 引脚
-GPIO.cleanup()
-GPIO_IN1 = 2
-GPIO_IN2 = 3
+
+GPIO_IN1 = 14
+GPIO_IN2 = 15
 
 GPIO.setup(GPIO_IN1, GPIO.OUT)
 GPIO.setup(GPIO_IN2, GPIO.OUT)
