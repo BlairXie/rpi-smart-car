@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import time
 GPIO.setmode(GPIO.BCM)
 #定义 GPIO 引脚
-
+GPIO.cleanup()
 GPIO_IN1 = 2
 GPIO_IN2 = 3
 
