@@ -9,58 +9,57 @@ GPIO_IN1 = 14
 GPIO_IN2 = 15
 GPIO_IN3 = 18
 GPIO_IN4 = 23
+ENA = 7
+ENB = 8
 
 GPIO.setwarnings(False)
 GPIO.setup(GPIO_IN1, GPIO.OUT)
 GPIO.setup(GPIO_IN2, GPIO.OUT)
 GPIO.setup(GPIO_IN3, GPIO.OUT)
 GPIO.setup(GPIO_IN4, GPIO.OUT)
+GPIO.setup(ENA,GPIO.OUT)
+GPIP.setup(ENB,GPIO.OUT)
 
-GPIO.output(GPIO_IN1,False)
-GPIO.output(GPIO_IN2,True)
-GPIO.output(GPIO_IN3,True)
-GPIO.output(GPIO_IN4,False)
+p1 = GPIO.PWM(ENA, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
+p2 = GPIO.PWM(ENB, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
+p1.start(40) #to start PWM
+p2.start(50)
 
-p2 = GPIO.PWM(GPIO_IN2, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
-p3 = GPIO.PWM(GPIO_IN3, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
-p2.start(40) #to start PWM
-p3.start(50)
-def turnLeft(dist):
-    if dist <= 10:
-        try:
-            p2.stop()
-            GPIO.output(GPIO_IN1,True)
-            GPIO.output(GPIO_IN2,False)
-            p1 = GPIO.PWM(GPIO_IN1, 200)
-            p1.start(40)
+def forward():
+    GPIO.output(GPIO_IN1,False)
+    GPIO.output(GPIO_IN2,True)
+    GPIO.output(GPIO_IN3,True)
+    GPIO.output(GPIO_IN4,False)
 
-            time.sleep(5)
+def turnLeft():
+    GPIO.output(GPIO_IN1,False)
+    GPIO.output(GPIO_IN2,False)
+    GPIO.output(GPIO_IN3,True)
+    GPIO.output(GPIO_IN4,False)
 
-            p1.stop()
-            GPIO.output(GPIO_IN1,False)
-            GPIO.output(GPIO_IN2,True)
-            p2 = GPIO.PWM(GPIO_IN2, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
-            p2.start(40) #to start PWM
-            print('turn left')
-        except:
-            pass
-    return 0
+def turnRight():
+    GPIO.output(GPIO_IN1,False)
+    GPIO.output(GPIO_IN2,True)
+    GPIO.output(GPIO_IN3,False)
+    GPIO.output(GPIO_IN4,False)
 
-
+def forward_avoid_obstacle():
+    dist = distance()
+    print("Measured Distance = {:.2f} cm".format(dist))
+    if(dis < 10 ):
+        turnLeft()
+        time.sleep(1)
+    else:
+        forward()
 
 
 try:
     while 1:
-        dist = distance()
-        print("Measured Distance = {:.2f} cm".format(dist))
-        turnLeft(dist)
-        time.sleep(1)
-
-
+        forward_avoid_obstacle()
 
 # Reset by pressing CTRL + C
 except KeyboardInterrupt:
+    p1.stop()
     p2.stop()
-    p3.stop()
     print("Measurement stopped by User")
     GPIO.cleanup()
