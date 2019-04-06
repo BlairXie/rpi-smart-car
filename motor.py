@@ -32,7 +32,7 @@ def forward():
     GPIO.output(GPIO_IN4,False)
 
 def turnLeft():
-    GPIO.output(GPIO_IN1,False)
+    GPIO.output(GPIO_IN1,True)
     GPIO.output(GPIO_IN2,False)
     GPIO.output(GPIO_IN3,True)
     GPIO.output(GPIO_IN4,False)
@@ -41,7 +41,7 @@ def turnRight():
     GPIO.output(GPIO_IN1,False)
     GPIO.output(GPIO_IN2,True)
     GPIO.output(GPIO_IN3,False)
-    GPIO.output(GPIO_IN4,False)
+    GPIO.output(GPIO_IN4,True)
 
 def forward_avoid_obstacle():
     dist = distance()
