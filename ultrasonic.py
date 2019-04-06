@@ -46,7 +46,7 @@ if __name__ == '__main__':
         while True:
             dist = distance()
             print("Measured Distance = {:.2f} cm".format(dist))
-            time.sleep(1)
+            # time.sleep(0.1)
 
         # Reset by pressing CTRL + C
     except KeyboardInterrupt:
