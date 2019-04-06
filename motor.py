@@ -27,20 +27,23 @@ p2.start(40) #to start PWM
 p3.start(50)
 def turnLeft(dist):
     if dist <= 10:
-        p2.stop()
-        GPIO.output(GPIO_IN1,True)
-        GPIO.output(GPIO_IN2,False)
-        p1 = GPIO.PWM(GPIO_IN1, 200)
-        p1.start(40)
+        try:
+            p2.stop()
+            GPIO.output(GPIO_IN1,True)
+            GPIO.output(GPIO_IN2,False)
+            p1 = GPIO.PWM(GPIO_IN1, 200)
+            p1.start(40)
 
-        time.sleep(5)
+            time.sleep(5)
 
-        p1.stop()
-        GPIO.output(GPIO_IN1,False)
-        GPIO.output(GPIO_IN2,True)
-        p2 = GPIO.PWM(GPIO_IN2, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
-        p2.start(40) #to start PWM
-        print('turn left')
+            p1.stop()
+            GPIO.output(GPIO_IN1,False)
+            GPIO.output(GPIO_IN2,True)
+            p2 = GPIO.PWM(GPIO_IN2, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
+            p2.start(40) #to start PWM
+            print('turn left')
+        except:
+            pass
     return 0
 
 
