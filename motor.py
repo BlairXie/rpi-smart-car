@@ -7,8 +7,8 @@ GPIO.setmode(GPIO.BCM)
 GPIO_IN1 = 14
 GPIO_IN2 = 15
 GPIO.setwarnings(False)
-GPIO.setup(GPIO_IN1, GPIO.OUT)
 GPIO.setup(GPIO_IN2, GPIO.OUT)
+GPIO.setup(GPIO_IN1, GPIO.OUT)
 
 GPIO.output(GPIO_IN2,True)
 GPIO.output(GPIO_IN1,True)
