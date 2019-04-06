@@ -50,6 +50,7 @@ def forward_avoid_obstacle():
         turnLeft()
     else:
         forward()
+    time.sleep(0.05)
 
 
 try:
