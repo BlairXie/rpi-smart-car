@@ -48,7 +48,6 @@ def forward_avoid_obstacle():
     print("Measured Distance = {:.2f} cm".format(dist))
     if(dist < 15 ):
         turnLeft()
-        time.sleep(1)
     else:
         forward()
 
