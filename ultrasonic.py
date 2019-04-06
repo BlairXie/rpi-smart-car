@@ -5,7 +5,7 @@ import time
 
 #设置 GPIO 模式为 BCM
 GPIO.setmode(GPIO.BCM)
-
+Use GPIO.setwarnings(False)
 #定义 GPIO 引脚
 GPIO_TRIGGER = 2
 GPIO_ECHO = 3
