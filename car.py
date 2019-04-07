@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import multiprocessing import Process
+from multiprocessing import Process
 from flask_server import *
 from ultrasonic import *
 def motor_process():
