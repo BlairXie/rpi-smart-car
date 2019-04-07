@@ -4,7 +4,7 @@ from flask import Response,request
 from camera_pi import Camera
 from multiprocessing import Process
 from ultrasonic import *
-
+from motor import *
 app = Flask(__name__)
 
 @app.route('/',methods=["post","get"])
@@ -43,6 +43,6 @@ def motor_process():
             GPIO.cleanup()
 
 if __name__=='__main__':
-    p1 = Process(target=motor_process)
+    p1 = Process(target=call_forward_avoid_obstacle)
     p1.start()
     app.run(host='0.0.0.0',port=80,debug=None,processes=1,threaded=True)#开启进程支持和线程支持

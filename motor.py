@@ -67,13 +67,14 @@ def forward_avoid_obstacle():
     time.sleep(0.08)
 
 
-try:
-    while 1:
-        forward_avoid_obstacle()
+def call_forward_avoid_obstacle():
+    try:
+        while 1:
+            forward_avoid_obstacle()
 
-# Reset by pressing CTRL + C
-except KeyboardInterrupt:
-    p1.stop()
-    p2.stop()
-    print("Measurement stopped by User")
-    GPIO.cleanup()
+            # Reset by pressing CTRL + C
+    except KeyboardInterrupt:
+        p1.stop()
+        p2.stop()
+        print("Measurement stopped by User")
+        GPIO.cleanup()
