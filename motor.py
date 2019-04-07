@@ -23,15 +23,17 @@ GPIO.setup(ENB,GPIO.OUT)
 p1 = GPIO.PWM(ENA, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
 p2 = GPIO.PWM(ENB, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
 p1.start(41) #to start PWM
-p2.start(48)
-pre_distance = 0
-turn_flag = 1 # 1代表 turn left , 0 代表 turn right
 
 def forward():
     GPIO.output(GPIO_IN1,False)
     GPIO.output(GPIO_IN2,True)
     GPIO.output(GPIO_IN3,True)
     GPIO.output(GPIO_IN4,False)
+def backward():
+    GPIO.output(GPIO_IN1,True)
+    GPIO.output(GPIO_IN2,False)
+    GPIO.output(GPIO_IN3,False)
+    GPIO.output(GPIO_IN4,True)
 
 def turnLeft():
     GPIO.output(GPIO_IN1,True)
@@ -51,15 +53,13 @@ def forward_avoid_obstacle():
     dist = distance()
     print("Measured Distance = {:.2f} cm".format(dist))
     if(dist < 25 ):
+        backward()
+        time.sleep(0.5)
         p1.ChangeDutyCycle(50)
         p2.ChangeDutyCycle(57)
-        if dist < pre_distance - 1.5:
-            turn_flag = not turn_flag
-        if turn_flag:
-            turnLeft()
-        else:
-            turnRight()
-        pre_distance = dist
+        turnLeft()
+        time.sleep(0.5)
+        return
     else:
         p1.ChangeDutyCycle(41)
         p2.ChangeDutyCycle(48)
