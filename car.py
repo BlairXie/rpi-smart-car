@@ -17,7 +17,7 @@ def motor_process():
 
 
 def flask_thread():
-    app.run(host='0.0.0.0',port=80,debug=True,processes=2)
+    app.run(host='0.0.0.0',port=80,debug=None,processes=2)
 
 if __name__ == '__main__':
     p2 = Process(target=flask_thread)

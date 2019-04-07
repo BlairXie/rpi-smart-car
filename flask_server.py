@@ -2,7 +2,9 @@
 from flask import Flask, abort, redirect, url_for, render_template
 from flask import Response,request
 from camera_pi import Camera
-# import ultrasonic
+from multiprocessing import Process
+from ultrasonic import *
+
 app = Flask(__name__)
 
 @app.route('/',methods=["post","get"])
@@ -12,7 +14,7 @@ def show_index():
         if button:
             print(button)
     except:
-       None 
+       None
     return render_template('flask_server.html')
 
 def gen(camera):
@@ -28,6 +30,19 @@ def video_feed():
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
+def motor_process():
+    try:
+        while True:
+                dist = distance()
+                print("Measured Distance = {:.2f} cm".format(dist))
+                time.sleep(0.05)
+
+            # Reset by pressing CTRL + C
+    except KeyboardInterrupt:
+            print("Measurement stopped by User")
+            GPIO.cleanup()
 
 if __name__=='__main__':
-    app.run(host='0.0.0.0',port=80,debug=True,threaded=True)
+    app.run(host='0.0.0.0',port=80,debug=None,threaded=True)
+    p1 = Process(target=motor_process)
+    p1.start()
