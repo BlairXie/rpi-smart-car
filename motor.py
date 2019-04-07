@@ -54,11 +54,11 @@ def forward_avoid_obstacle():
     print("Measured Distance = {:.2f} cm".format(dist))
     if(dist < 25 ):
         backward()
-        time.sleep(0.5)
+        time.sleep(0.2)
         p1.ChangeDutyCycle(50)
         p2.ChangeDutyCycle(57)
         turnLeft()
-        time.sleep(0.5)
+        time.sleep(0.2)
         return
     else:
         p1.ChangeDutyCycle(41)
