@@ -43,6 +43,6 @@ def motor_process():
             GPIO.cleanup()
 
 if __name__=='__main__':
-    app.run(host='0.0.0.0',port=80,debug=None,processes=2)
+    app.run(host='0.0.0.0',port=80,debug=None,processes=2,threaded=True)
     p1 = Process(target=motor_process)
     p1.start()
