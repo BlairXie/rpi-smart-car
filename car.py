@@ -20,9 +20,8 @@ def flask_thread():
     app.run(host='0.0.0.0',port=80,debug=True,processes=2)
 
 if __name__ == '__main__':
-    p1 = Process(target=motor_process)
-    p1.start()
-
     p2 = Process(target=flask_thread)
     p2.start()
     p2.join()
+    # p1 = Process(target=motor_process)
+    # p1.start()
