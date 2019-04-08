@@ -20,10 +20,10 @@ GPIO.setup(GPIO_IN4, GPIO.OUT)
 GPIO.setup(ENA,GPIO.OUT)
 GPIO.setup(ENB,GPIO.OUT)
 
-p1 = GPIO.PWM(ENA, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
-p2 = GPIO.PWM(ENB, 200) # channel=? frequency=50Hz（需要修改高电平引脚）
-p1.start(41) #to start PWM
-p2.start(48)
+p1 = GPIO.PWM(ENA, 200) #  
+p2 = GPIO.PWM(ENB, 200) # 
+p1.start(31) #to start PWM
+p2.start(35)
 def forward():
     GPIO.output(GPIO_IN1,False)
     GPIO.output(GPIO_IN2,True)
@@ -55,14 +55,14 @@ def forward_avoid_obstacle():
     if(dist < 25 ):
         backward()
         time.sleep(0.2)
-        p1.ChangeDutyCycle(50)
-        p2.ChangeDutyCycle(57)
+        p1.ChangeDutyCycle(41)#50
+        p2.ChangeDutyCycle(48)#57
         turnLeft()
         time.sleep(0.2)
         return
     else:
-        p1.ChangeDutyCycle(41)
-        p2.ChangeDutyCycle(48)
+        p1.ChangeDutyCycle(31)#41
+        p2.ChangeDutyCycle(35)#48
         forward()
     time.sleep(0.08)
 
