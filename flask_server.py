@@ -2,6 +2,8 @@
 from flask import Flask, abort, redirect, url_for, render_template
 from flask import Response,request
 from camera_pi import Camera
+
+#import from other files
 from multiprocessing import Process
 from ultrasonic import *
 from motor import *

@@ -9,6 +9,12 @@ from http import server
 # for python 2
 #import SimpleHTTPServer
 
+#import from other files
+from multiprocessing import Process
+from ultrasonic import *
+from motor import *
+
+
 """
 Copied from: http://picamera.readthedocs.io/en/latest/recipes2.html#web-streaming
 """
