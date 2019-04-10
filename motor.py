@@ -79,7 +79,10 @@ def motion_ctrol(share_state):
     try:
         while 1:
             try:
-                run_flag = share_state.value
+                print(share_state.value)
+                if share_state.value != -1:
+                    run_flag = share_state.value
+                    share_state.value = -1
             except:
                 pass
             if run_flag == 0:
@@ -102,7 +105,6 @@ def motion_ctrol(share_state):
                 pause()
                 time.sleep(1)
                 run_flag = 1
-            share_state.value = run_flag
 
             # exit by pressing CTRL + C
     except KeyboardInterrupt:
