@@ -47,11 +47,6 @@ def video_feed():
     return Response(gen(Camera()),
                     mimetype=headers['Content-Type'])
 
-def run():
-    p1 = Process(target=call_forward_avoid_obstacle)
-    p1.start()
-    app.run(host='0.0.0.0',port=80,debug=False,processes=1,threaded=True)#开启进程支持和线程支持
-        
 if __name__=='__main__':
     p1 = Process(target=call_forward_avoid_obstacle)
     p1.start()
