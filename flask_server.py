@@ -16,7 +16,7 @@ headers = {
         'Age': 0,
         'Cache-Control': 'no-cache, private',
         'Pragma': 'no-cache',
-        'Content-Type': 'multipart/x-mixed-replace; boundary=frame',
+        'Content-Type': 'multipart/x-mixed-replace; boundary=frame'
 }
 
 @app.route('/',methods=["post","get"])
@@ -34,7 +34,9 @@ def gen(camera):
     while True:
         frame = camera.get_frame()
         wrapped_frame = (b'--frame\r\n' +
-                         b'Content-Type: image/jpeg\r\n' + frame + b'\r\n')
+                         b'Content-Type: image/jpeg\r\n' +
+                         bytes('Content-Length: {}\r\n\r\n'.format(len(frame),encoding='UTF-8')
+                         + frame + b'\r\n')
         yield wrapped_frame
 
 
