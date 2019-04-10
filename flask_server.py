@@ -54,7 +54,7 @@ def video_feed():
                     status=200)
 
 if __name__=='__main__':
-    share_state = Value('i',0)
+    share_state = Value('i',-1)
     p1 = Process(target=motion_ctrol,args=(share_state,))
     p1.start()
     app.run(host='0.0.0.0',port=80,debug=False,threaded=True)#开启进程支持和线程支持
