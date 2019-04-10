@@ -58,8 +58,6 @@ def pause():
     GPIO.output(GPIO_IN4,False)
 
 def forward_avoid_obstacle():
-    global pre_distance
-    global turn_flag
     dist = distance()
     print("Measured Distance = {:.2f} cm".format(dist))
     if(dist < 25 ):
