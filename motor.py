@@ -14,7 +14,6 @@ GPIO_IN4 = 23
 ENA = 7
 ENB = 8
 run_flag = 0
-flag_dict = {'pa':0, 'up':1, 'lef':2, "rig":3}
 
 GPIO.setwarnings(False)
 GPIO.setup(GPIO_IN1, GPIO.OUT)
@@ -81,8 +80,7 @@ def motion_ctrol(queue):
     try:
         while 1:
             try:
-                command = queue.get()
-                run_flag = flag_dict[command]
+                run_flag = share_state.value
             except:
                 pass
             if run_flag == 0:

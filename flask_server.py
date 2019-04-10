@@ -6,7 +6,7 @@ from flask import stream_with_context
 from camera_pi_android import Camera
 
 #import from other files
-from multiprocessing import Process,Queue
+from multiprocessing import Process,Value
 from ultrasonic import *
 from motor import *
 app = Flask(__name__)
@@ -19,13 +19,15 @@ stream_headers = {
         'Content-Type': 'multipart/x-mixed-replace; boundary=frame'
 }
 
+flag_dict = {'pa':0, 'up':1, 'lef':2, "rig":3}
+
 @app.route('/',methods=["post","get"])
 def show_index():
-    global queue
+    global share_state
     try:
         button = request.form["button"]
         if button:
-            queue.put(button)
+            share_state.value = run_flag[button]
             print(button)
     except:
        None
@@ -52,7 +54,7 @@ def video_feed():
                     status=200)
 
 if __name__=='__main__':
-    queue = Queue()
-    p1 = Process(target=motion_ctrol,args=(queue,))
+    share_state = Value('i',0)
+    p1 = Process(target=motion_ctrol,args=(share_state,))
     p1.start()
     app.run(host='0.0.0.0',port=80,debug=False,threaded=True)#开启进程支持和线程支持
