@@ -52,7 +52,7 @@ def video_feed():
                     status=200)
 
 if __name__=='__main__':
-    queue = Pipe()
+    queue = Queue()
     p1 = Process(target=motion_ctrol,args=(queue,))
     p1.start()
     app.run(host='0.0.0.0',port=80,debug=False,threaded=True)#开启进程支持和线程支持

@@ -106,7 +106,7 @@ def motion_ctrol(queue):
                 time.sleep(1)
                 run_flag = 1
 
-            # Reset by pressing CTRL + C
+            # exit by pressing CTRL + C
     except KeyboardInterrupt:
         p1.stop()
         p2.stop()
