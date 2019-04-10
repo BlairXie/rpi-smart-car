@@ -6,12 +6,15 @@ from ultrasonic import distance
 GPIO.setmode(GPIO.BCM)
 #定义 GPIO 引脚
 
+
 GPIO_IN1 = 14
 GPIO_IN2 = 15
 GPIO_IN3 = 18
 GPIO_IN4 = 23
 ENA = 7
 ENB = 8
+run_flag = 0
+flag_dict = {'pa':0, 'up':1, 'lef':2, "rig":3}
 
 GPIO.setwarnings(False)
 GPIO.setup(GPIO_IN1, GPIO.OUT)
@@ -21,8 +24,8 @@ GPIO.setup(GPIO_IN4, GPIO.OUT)
 GPIO.setup(ENA,GPIO.OUT)
 GPIO.setup(ENB,GPIO.OUT)
 
-p1 = GPIO.PWM(ENA, 200) #  
-p2 = GPIO.PWM(ENB, 200) # 
+p1 = GPIO.PWM(ENA, 200) #
+p2 = GPIO.PWM(ENB, 200) #
 p1.start(31) #to start PWM
 p2.start(35)
 def forward():
@@ -48,6 +51,12 @@ def turnRight():
     GPIO.output(GPIO_IN3,False)
     GPIO.output(GPIO_IN4,True)
 
+def pause():
+    GPIO.output(GPIO_IN1,False)
+    GPIO.output(GPIO_IN2,False)
+    GPIO.output(GPIO_IN3,False)
+    GPIO.output(GPIO_IN4,False)
+
 def forward_avoid_obstacle():
     global pre_distance
     global turn_flag
@@ -68,10 +77,36 @@ def forward_avoid_obstacle():
     time.sleep(0.08)
 
 
-def call_forward_avoid_obstacle():
+def motion_ctrol(pipe):
+    global run_flag
+    global flag_dict
     try:
         while 1:
-            forward_avoid_obstacle()
+            try:
+                command = pipe.recv()
+                run_flag = flag_dict[command]
+            except:
+                pass
+            if run_flag == 0:
+                pause()
+                print("pause")
+            elif run_flag == 1:
+                forward_avoid_obstacle()
+                print('move forward')
+            elif run_flag == 2:
+                turnLeft()
+                time.sleep(1)
+                print("turn left")
+                pause()
+                time.sleep(1)
+                run_flag = 1
+            elif run_flag == 3:
+                turnRight()
+                time.sleep(1)
+                print("turn right")
+                pause()
+                time.sleep(1)
+                run_flag = 1
 
             # Reset by pressing CTRL + C
     except KeyboardInterrupt:
