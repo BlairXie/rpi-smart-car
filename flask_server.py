@@ -37,7 +37,7 @@ def gen(camera):
                          b'Content-Type: image/jpeg\r\n' +
                          bytes('Content-Length: {}\r\n\r\n'.format(len(frame),encoding='UTF-8')
                          + frame + b'\r\n')
-        yield wrapped_frame
+        yield(wrapped_frame)
 
 
 @app.route('/video_feed')
