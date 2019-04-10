@@ -53,4 +53,4 @@ class Camera(BaseCamera):
                 # with self.output.condition:
                     # self.output.condition.wait()
                 frame = Camera.output.frame
-yield frame
+                yield frame
