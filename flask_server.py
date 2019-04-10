@@ -12,7 +12,7 @@ from motor import *
 app = Flask(__name__)
 
 
-headers = {
+stream_headers = {
         'Age': 0,
         'Cache-Control': 'no-cache, private',
         'Pragma': 'no-cache',
@@ -45,7 +45,9 @@ def video_feed():
     global headers
     """Video streaming route. Put this in the src attribute of an img tag."""
     return Response(gen(Camera()),
-                    mimetype=headers['Content-Type'])
+                    mimetype=stream_headers['Content-Type'],
+                    headers=stream_headers,
+                    status=200)
 
 if __name__=='__main__':
     p1 = Process(target=call_forward_avoid_obstacle)
