@@ -2,7 +2,7 @@
 from flask import Flask, abort, redirect, url_for, render_template
 from flask import Response,request
 from flask import stream_with_context
-from camera_pi_andoid import Camera
+from camera_pi_android import Camera
 
 #import from other files
 from multiprocessing import Process
@@ -34,7 +34,7 @@ def gen(camera):
 @app.route('/video_feed')
 def video_feed():
     """Video streaming route. Put this in the src attribute of an img tag."""
-    return Response(response=stream_with_context(gen(Camera())),
+    return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 
