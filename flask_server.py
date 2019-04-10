@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# --coding: utf-8 --
 from flask import Flask, abort, redirect, url_for, render_template
 from flask import Response,request
 from flask import stream_with_context
