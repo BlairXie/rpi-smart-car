@@ -24,7 +24,7 @@ def gen(camera):
     """Video streaming generator function."""
     while True:
         frame = camera.get_frame()
-        wrapped_frame = (b'--frame\r\n'
+        wrapped_frame = (b'--frame\r\n' +
                          b'Content-Type: image/jpeg\r\n' +
                          b'Content-Length: {}\r\n\r\n'.format(len(frame))
                          + frame + b'\r\n')
