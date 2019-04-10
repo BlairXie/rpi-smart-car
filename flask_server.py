@@ -11,6 +11,14 @@ from ultrasonic import *
 from motor import *
 app = Flask(__name__)
 
+
+headers = {
+        'Age': 0,
+        'Cache-Control': 'no-cache, private',
+        'Pragma': 'no-cache',
+        'Content-Type': 'multipart/x-mixed-replace; boundary=frame',
+}
+
 @app.route('/',methods=["post","get"])
 def show_index():
     try:
@@ -34,10 +42,13 @@ def gen(camera):
 
 @app.route('/video_feed')
 def video_feed():
+    global headers
     """Video streaming route. Put this in the src attribute of an img tag."""
-    return Response(gen(Camera()),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
-
+    return Response(response=stream_with_context(gen(Camera())),
+                    mimetype=headers['Content-Type'],
+                    headers=headers,
+                    status=200,
+                   )
 
 
 if __name__=='__main__':
