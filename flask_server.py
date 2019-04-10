@@ -29,7 +29,7 @@ def gen(camera):
                          b'Content-Length: {}\r\n\r\n'.format(len(frame))
                          + frame + b'\r\n')
         yield wrapped_frame
-        
+
 
 @app.route('/video_feed')
 def video_feed():
@@ -37,17 +37,7 @@ def video_feed():
     return Response(response=stream_with_context(gen(Camera())),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
-def motor_process():
-    try:
-        while True:
-                dist = distance()
-                print("Measured Distance = {:.2f} cm".format(dist))
-                time.sleep(0.05)
 
-            # Reset by pressing CTRL + C
-    except KeyboardInterrupt:
-            print("Measurement stopped by User")
-            GPIO.cleanup()
 
 if __name__=='__main__':
     p1 = Process(target=call_forward_avoid_obstacle)
