@@ -3,7 +3,7 @@
 from flask import Flask, abort, redirect, url_for, render_template
 from flask import Response,request
 from flask import stream_with_context
-from camera_pi_android import Camera
+from camera_pi_multiprocess import Camera
 
 #import from other files
 from multiprocessing import Process
