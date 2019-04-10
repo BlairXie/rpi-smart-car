@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 from flask import Flask, abort, redirect, url_for, render_template
 from flask import Response,request
-from camera_pi import Camera
+from flask import stream_with_context
+from camera_pi_andoid import Camera
 
 #import from other files
 from multiprocessing import Process
@@ -23,13 +24,17 @@ def gen(camera):
     """Video streaming generator function."""
     while True:
         frame = camera.get_frame()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+        wrapped_frame = (b'--frame\r\n'
+                         b'Content-Type: image/jpeg\r\n' +
+                         b'Content-Length: {}\r\n\r\n'.format(len(frame))
+                         + frame + b'\r\n')
+        yield wrapped_frame
+        
 
 @app.route('/video_feed')
 def video_feed():
     """Video streaming route. Put this in the src attribute of an img tag."""
-    return Response(gen(Camera()),
+    return Response(response=stream_with_context(gen(Camera())),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 def motor_process():
