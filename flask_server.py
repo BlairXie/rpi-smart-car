@@ -27,7 +27,7 @@ def show_index():
     try:
         button = request.form["button"]
         if button:
-            share_state.value = run_flag[button]
+            share_state.value = flag_dict[button]
             print(button)
     except:
        None

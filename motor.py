@@ -74,9 +74,8 @@ def forward_avoid_obstacle():
     time.sleep(0.08)
 
 
-def motion_ctrol(queue):
+def motion_ctrol(share_state):
     global run_flag
-    global flag_dict
     try:
         while 1:
             try:
