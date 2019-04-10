@@ -43,7 +43,7 @@ class Camera(BaseCamera):
 
     @staticmethod
     def frames():
-        with picamera.PiCamera(sensor_mode=5, resolution="640x480", framerate=40) as camera:
+        with picamera.PiCamera(resolution="640x480", framerate=24) as camera:
             Camera.camera = camera
             Camera.output = StreamingOutput()
 
