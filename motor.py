@@ -75,13 +75,13 @@ def forward_avoid_obstacle():
     time.sleep(0.08)
 
 
-def motion_ctrol(pipe):
+def motion_ctrol(queue):
     global run_flag
     global flag_dict
     try:
         while 1:
             try:
-                command = pipe.recv()
+                command = queue.get()
                 run_flag = flag_dict[command]
             except:
                 pass
