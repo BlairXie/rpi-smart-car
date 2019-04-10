@@ -3,7 +3,7 @@
 from flask import Flask, abort, redirect, url_for, render_template
 from flask import Response,request
 from flask import stream_with_context
-from camera_pi_multiprocess import Camera
+from camera_pi_android import Camera
 
 #import from other files
 from multiprocessing import Process
@@ -52,4 +52,4 @@ def video_feed():
 if __name__=='__main__':
     p1 = Process(target=call_forward_avoid_obstacle)
     p1.start()
-    app.run(host='0.0.0.0',port=80,debug=False,processes=6,threaded=False)#开启进程支持和线程支持
+    app.run(host='0.0.0.0',port=80,debug=False,threaded=True)#开启进程支持和线程支持
