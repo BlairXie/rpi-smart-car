@@ -1,6 +1,7 @@
 # --coding: utf-8 --
 import RPi.GPIO as GPIO
 import time
+import sys
 from ultrasonic import distance
 GPIO.setmode(GPIO.BCM)
 #定义 GPIO 引脚
@@ -78,3 +79,4 @@ def call_forward_avoid_obstacle():
         p2.stop()
         print("Measurement stopped by User")
         GPIO.cleanup()
+        sys.exit(0)
