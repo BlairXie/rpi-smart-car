@@ -79,7 +79,7 @@ def motion_ctrol(share_state):
     try:
         while 1:
             try:
-                # print(share_state.value)
+                print(share_state.value)
                 if share_state.value != -1:
                     run_flag = share_state.value
                     share_state.value = -1
